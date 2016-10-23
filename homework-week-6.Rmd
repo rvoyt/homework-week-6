@@ -83,7 +83,7 @@ summary(log_m)
 
 #Scatterplot - regular
 p <- ggplot(data=d,aes(x=brain_size, y=max_longev)) + geom_point() + geom_smooth(method="lm",formula=y~x,color="aquamarine3") #create scatterplot
-p <- p + geom_label(x=250,y=800,label="y = 1.218x + 248.952",color="coral2") #add model equation
+p <- p + geom_label(x=250,y=800,label="y = 1.218x + 248.952",color="coral2") #add model equation - I liked the look of geom_label better than geom_text :)
 p
 
 #Scatterplot - log transformed
