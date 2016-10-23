@@ -9,8 +9,8 @@ output: html_document
 -The function should contain a check for the rules of thumb we have talked about (n*p>5 and n*(1-p)>5) to ensure the validity of assuming the normal distribution in both the one- and two-sample settings. If this is violated, the function should still complete but it should also print an appropriate warning message.
 -The function should return a list containing the members Z (the test statistic), P (the appropriate p-value), and CI (the two-sided CI with respect to confidence level).
 ```{r}
-Z.prop.test()<-function(p1,n1,p2=NULL,n2=NULL,p0,alternative="two.sided",conf.level=0.95){ #set up arguments and defaults
-  if (p2=NULL||n2=NULL){ #set up 1-sample z-test
+Z.prop.test<-function(p1,n1,p2=NULL,n2=NULL,p0,alternative="two.sided",conf.level=0.95){ #set up arguments and defaults
+  if (if.null(p2)||if.null(n2)){ #set up 1-sample z-test
     if(n1*p1<=5||n1*(1-p1)<=5){ #assess validity of normal dist.
     warning("Oh dear! Normal distribution may not be valid!; np<=5 or n(1-p)<=5") #spit out warning if above rules are violated
   } 
@@ -47,7 +47,7 @@ Z.prop.test()<-function(p1,n1,p2=NULL,n2=NULL,p0,alternative="two.sided",conf.le
             if (Z>0) {p<-2*pnorm(z,lower.tail=FALSE)}
             if (Z<0) {p<-2*pnorm(z,lower.tail=TRUE)}
     }
-  return(list(Z-score=Z,p-value=p,CI=CI)) #return list of values
+  return(list(Zscore=Z,pvalue=p,CI=CI)) #return list of values
 }
 ```
 
@@ -58,7 +58,7 @@ Z.prop.test()<-function(p1,n1,p2=NULL,n2=NULL,p0,alternative="two.sided",conf.le
 -Produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm. Do you trust the model to predict observations accurately for this value of the explanatory variable? Why or why not?
 -Looking at your two models, which do you think is better? Why?
 
-##Import data
+##Step 0: Import data
 ```{r}
 d<-read.csv(file="/Users/rachelvoyt/Desktop/ADA/KamilarAndCooperData.csv",sep=",",header=T)
 head(d)
